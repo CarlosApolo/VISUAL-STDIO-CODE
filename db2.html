@@ -286,7 +286,10 @@ Los bucles en Python permiten repetir un bloque de código varias veces, ya sea 
 <div class="ejercicio">
 <h2>1. Imprime los números del 1 al 10.</h2>
 <pre><code>
+# El ciclo for recorre un rango de números
+# range(1, 11) genera números desde 1 hasta 10
 for i in range(1, 11):
+    # En cada iteración se imprime el valor de i
     print(i)
 </code></pre>
 <!-- BOTÓN -->
@@ -308,7 +311,9 @@ for i in range(1, 11):
 <div class="ejercicio">
 <h2>2. Imprime los números pares del 1 al 20.</h2>
 <pre><code>
+# Recorre los números del 1 al 20
 for i in range(1, 21):
+    # Verifica si el número es par usando el operador módulo
     if i % 2 == 0:
         print(i)
 </code></pre>
@@ -331,9 +336,12 @@ for i in range(1, 21):
 <div class="ejercicio">
 <h2>3. Tabla de multiplicar.</h2>
 <pre><code>
+# Solicita un número al usuario
 numero = int(input("Ingrese un número: "))
 
+# Recorre del 1 al 10
 for i in range(1, 11):
+    # Muestra la multiplicación paso a paso
     print(numero, "x", i, "=", numero * i)
 </code></pre>
 <!-- BOTÓN -->
@@ -355,6 +363,8 @@ for i in range(1, 11):
 <div class="ejercicio">
 <h2>4. Números del 10 al 1.</h2>
 <pre><code>
+# range(inicio, fin, paso negativo)
+# Aquí empieza en 10 y va hasta 1 restando de uno en uno
 for i in range(10, 0, -1):
     print(i)
 </code></pre>
@@ -377,12 +387,18 @@ for i in range(10, 0, -1):
 <div class="ejercicio">
 <h2>5. Suma acumulada.</h2>
 <pre><code>
+# Solicita un número
 numero = int(input("Ingrese un número: "))
+
+# Variable acumuladora inicializada en 0
 suma = 0
 
+# Recorre desde 1 hasta el número ingresado
 for i in range(1, numero + 1):
+    # Se va sumando cada valor a la variable suma
     suma += i
 
+# Muestra el resultado final
 print("La suma es:", suma)
 </code></pre>
 <!-- BOTÓN -->
@@ -404,13 +420,19 @@ print("La suma es:", suma)
 <div class="ejercicio">
 <h2>6. Contar vocales.</h2>
 <pre><code>
+# Solicita una palabra y la convierte a minúsculas
 palabra = input("Ingrese una palabra: ").lower()
+
+# Contador inicial en 0
 contador = 0
 
+# Recorre cada letra de la palabra
 for letra in palabra:
+    # Verifica si la letra es una vocal
     if letra in "aeiou":
-        contador += 1
+        contador += 1  # Incrementa el contador
 
+# Muestra el total de vocales
 print("Número de vocales:", contador)
 </code></pre>
 <!-- BOTÓN -->
@@ -432,6 +454,21 @@ print("Número de vocales:", contador)
 <div class="ejercicio">
 <h2>7. Validar contraseña.</h2>
 <pre><code>
+# Contraseña correcta definida
+correcta = "python123"
+
+# Bucle infinito hasta que se cumpla la condición
+while True:
+    # Solicita la contraseña
+    clave = input("Ingrese la contraseña: ")
+
+    # Verifica si coincide con la correcta
+    if clave == correcta:
+        print("Acceso correcto")
+        break  # Sale del ciclo si es correcta
+    else:
+        print("Contraseña incorrecta")
+</code></pre>
     <!-- BOTÓN -->
 <button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
 🎬 Ver video
@@ -445,24 +482,16 @@ print("Número de vocales:", contador)
     allowfullscreen
     style="display:none;">
 </iframe>
-correcta = "python123"
 
-while True:
-    clave = input("Ingrese la contraseña: ")
-
-    if clave == correcta:
-        print("Acceso correcto")
-        break
-    else:
-        print("Contraseña incorrecta")
-</code></pre>
 </div>
 
 <!-- EJERCICIO 8 -->
 <div class="ejercicio">
 <h2>8. Múltiplos de 5 del 1 al 50.</h2>
 <pre><code>
+# Recorre los números del 1 al 50
 for i in range(1, 51):
+    # Verifica si el número es divisible para 5
     if i % 5 == 0:
         print(i)
 </code></pre>
@@ -485,14 +514,19 @@ for i in range(1, 51):
 <div class="ejercicio">
 <h2>9. Número mayor.</h2>
 <pre><code>
+# Inicializa la variable mayor como None (sin valor inicial)
 mayor = None
 
+# Se repite 5 veces
 for i in range(5):
+    # Solicita un número
     num = int(input("Ingrese un número: "))
 
+    # Si es el primer número o es mayor al actual
     if mayor is None or num > mayor:
-        mayor = num
+        mayor = num  # Se actualiza el valor mayor
 
+# Muestra el número más grande ingresado
 print("El número mayor es:", mayor)
 </code></pre>
 <!-- BOTÓN -->
@@ -514,7 +548,10 @@ print("El número mayor es:", mayor)
 <div class="ejercicio">
 <h2>10. Triángulo de asteriscos.</h2>
 <pre><code>
+# Recorre del 1 al 5
 for i in range(1, 6):
+    # Imprime una cantidad de asteriscos igual a i
+    # El operador * repite el carácter
     print("*" * i)
 </code></pre>
 <!-- BOTÓN -->

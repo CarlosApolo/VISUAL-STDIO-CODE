@@ -280,7 +280,9 @@ iframe {
 <p class="definicion">
 La sentencia if en Python es una estructura de control condicional que ejecuta un bloque de código solo si una condición específica es verdadera.
 </p>
-<p>Resuelve los siguientes ejercicios usando condicionales en Python.</p>
+<p>Resuelve los siguientes ejercicios usando condicionales en Python. 
+Estos ejercicios aplican estructuras condicionales (if, elif, else) en
+Python para resolver problemas básicos como validaciones, comparaciones y toma de decisiones.</p>
 
 <!-- EJERCICIO 1 -->
 <div class="ejercicio">
@@ -288,8 +290,12 @@ La sentencia if en Python es una estructura de control condicional que ejecuta u
 <h2>1. Número mayor a 50</h2>
 
 <pre><code>
+# Solicita al usuario un número entero
 numero = int(input("Ingrese un número: "))
+
+# Verifica si el número es mayor que 50
 if numero > 50:
+    # Si se cumple la condición, muestra el mensaje
     print("El número es mayor que 50")
 </code></pre>
 
@@ -313,10 +319,15 @@ if numero > 50:
 <div class="ejercicio">
 <h2>2. Puede votar</h2>
 <pre><code>
+# Solicita la edad del usuario
 edad = int(input("Ingrese su edad: "))
+
+# Evalúa si es mayor o igual a 18
 if edad >= 18:
+    # Si es mayor de edad, puede votar
     print("Puede votar")
 else:
+    # Caso contrario, no puede votar
     print("No puede votar")
 </code></pre>
 <!-- BOTÓN -->
@@ -338,7 +349,11 @@ else:
 <div class="ejercicio">
 <h2>3. Múltiplo de 3</h2>
 <pre><code>
+# Solicita un número al usuario
 numero = int(input("Ingrese un número: "))
+
+# Verifica si el número es divisible para 3
+# El operador % devuelve el residuo
 if numero % 3 == 0:
     print("Es múltiplo de 3")
 else:
@@ -363,7 +378,10 @@ else:
 <div class="ejercicio">
 <h2>4. Contraseña</h2>
 <pre><code>
+# Solicita una contraseña al usuario
 clave = input("Ingrese la contraseña: ")
+
+# Compara si la contraseña ingresada es correcta
 if clave == "python123":
     print("Correcta")
 else:
@@ -388,7 +406,10 @@ else:
 <div class="ejercicio">
 <h2>5. Nota</h2>
 <pre><code>
+# Solicita una nota (número decimal)
 nota = float(input("Ingrese la nota: "))
+
+# Evalúa si la nota es suficiente para aprobar
 if nota >= 7:
     print("Aprobado")
 else:
@@ -413,14 +434,17 @@ else:
 <div class="ejercicio">
 <h2>6. Número mayor</h2>
 <pre><code>
+# Solicita dos números enteros
 a = int(input("Número 1: "))
 b = int(input("Número 2: "))
 
+# Compara cuál número es mayor
 if a > b:
     print("El primero es mayor")
 elif b > a:
     print("El segundo es mayor")
 else:
+    # Si ninguno es mayor, son iguales
     print("Son iguales")
 </code></pre>
 <!-- BOTÓN -->
@@ -442,8 +466,10 @@ else:
 <div class="ejercicio">
 <h2>7. Positivo, negativo o cero</h2>
 <pre><code>
+# Solicita un número al usuario
 num = int(input("Ingrese un número: "))
 
+# Determina si el número es positivo, negativo o cero
 if num > 0:
     print("Positivo")
 elif num < 0:
@@ -470,8 +496,10 @@ else:
 <div class="ejercicio">
 <h2>8. Vocal</h2>
 <pre><code>
+# Solicita una letra y la convierte a minúscula
 letra = input("Ingrese una letra: ").lower()
 
+# Verifica si la letra está dentro del grupo de vocales
 if letra in "aeiou":
     print("Es vocal")
 else:
@@ -496,8 +524,10 @@ else:
 <div class="ejercicio">
 <h2>9. Temperatura</h2>
 <pre><code>
+# Solicita la temperatura
 temp = float(input("Ingrese temperatura: "))
 
+# Evalúa si la temperatura es menor a 15 grados
 if temp < 15:
     print("Hace frío")
 else:
@@ -522,9 +552,14 @@ else:
 <div class="ejercicio">
 <h2>10. Año bisiesto</h2>
 <pre><code>
-anio = int(input("Ingrese un año: "))
+# Solicita un año al usuario
+año = int(input("Ingrese un año: "))
 
-if (anio % 4 == 0 and anio % 100 != 0) or (anio % 400 == 0):
+# Verifica si es un año bisiesto:
+# - Debe ser divisible para 4
+# - No debe ser divisible para 100
+# - Excepto si es divisible para 400
+if (año % 4 == 0 and año % 100 != 0) or (año % 400 == 0):
     print("Es bisiesto")
 else:
     print("No es bisiesto")

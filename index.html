@@ -1,13 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APOLO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apolo Carlos</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #0f172a;
+        color: white;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 36px;
+    }
+
+    p {
+        text-align: center;
+        color: #cbd5f5;
+        margin-bottom: 30px;
+    }
+
+    /* GRID */
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 20px;
+    }
+
+    /* CARD */
+    .card {
+        background: #e5e7eb;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 8px 8px 15px #0a0f1c,
+                    -8px -8px 15px #1c2745;
+        transition: all 0.3s ease;
+        color: #111827;
+        text-align: center;
+    }
+
+    /* HOVER */
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 12px 12px 20px #0a0f1c,
+                    -12px -12px 20px #1c2745;
+    }
+
+    /* ICON */
+    .icon {
+        font-size: 45px;
+        margin-bottom: 10px;
+    }
+
+    /* TITLE */
+    .card h2 {
+        margin: 10px 0;
+    }
+
+    /* BUTTON */
+    .btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        background: linear-gradient(135deg, #3b82f6, #6366f1);
+        color: white;
+        box-shadow: 0 0 10px rgba(99,102,241,0.6);
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        box-shadow: 0 0 20px rgba(99,102,241,1);
+        transform: scale(1.05);
+    }
+
+</style>
 </head>
+
 <body>
-    Desarrollo y Programación de Software
-    Desarrollado por Apolo Carlos
-    <a href="Deber1.html">Visitar Deberes</a>
+
+<h1>💻 Desarrollo y Programación de Software 💻</h1>
+    <p>Bienvenido a mi página web</p>
+    <p><strong>Desarrollado por Apolo Carlos</strong></p>
+
+<div class="container">
+
+    <!-- MIS DEBERES -->
+    <div class="card">
+        <div class="icon">📚</div>
+        <h2>Mis Deberes</h2>
+        <p>Accede a todas tus tareas y trabajos realizados.</p>
+        <a href="Deber1.html" class="btn">Entrar</a>
+    </div>
+
+    <!-- LECCIÓN -->
+    <div class="card">
+        <div class="icon">📖</div>
+        <h2>Lección</h2>
+        <p>Contenido teórico y material de estudio.</p>
+        <a href="Leccion.html" class="btn">Entrar</a>
+    </div>
+
+    <!-- EXAMEN -->
+    <div class="card">
+        <div class="icon">📝</div>
+        <h2>Examen</h2>
+        <p>Evaluaciones y pruebas del curso.</p>
+        <a href="Examen.html" class="btn">Entrar</a>
+    </div>
+
+</div>
+     <footer>
+        © 2026 Apolo Carlos - Todos los derechos reservados
+    </footer>
 </body>
 </html>

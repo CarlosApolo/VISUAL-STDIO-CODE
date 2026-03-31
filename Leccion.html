@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lección - IMC</title>
+
+<!-- FUENTES -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* BODY */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #e2e8f0;
+
+    background: radial-gradient(circle at top left, #0f172a, #020617 60%),
+                radial-gradient(circle at bottom right, #0ea5e9, #020617 60%);
+    
+    background-attachment: fixed;
+    padding-top: 90px;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 30px;
+
+    background: rgba(2, 6, 23, 0.7);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(14,165,233,0.3);
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #38bdf8;
+}
+
+#nav-menu {
+    display: flex;
+    gap: 25px;
+}
+
+#nav-menu a {
+    font-family: 'Poppins', sans-serif;
+    color: #cbd5f5;
+    text-decoration: none;
+}
+
+#nav-menu a.active {
+    color: #38bdf8;
+    border-bottom: 2px solid #38bdf8;
+}
+
+/* CONTENEDOR */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+}
+
+.header p {
+    color: #cbd5f5;
+}
+
+/* STICKY CARDS */
+.card {
+    position: sticky;
+    top: 120px;
+
+    margin: 60px 0;
+    padding: 25px;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+
+    transition: all 0.4s ease;
+}
+
+/* EFECTO SCROLL */
+.card.scale {
+    transform: scale(0.96);
+    opacity: 0.7;
+    filter: blur(1px);
+}
+
+/* HOVER */
+.card:hover,
+.card:focus-within {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* TITULOS */
+.card h2 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+}
+
+/* TEXTO */
+.card p {
+    color: #cbd5f5;
+    line-height: 1.6;
+}
+
+/* CODIGO */
+pre {
+    background: rgba(2, 6, 23, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow-x: auto;
+    border-left: 4px solid #22d3ee;
+}
+
+code {
+    color: #22d3ee;
+}
+
+/* BOTÓN */
+.btn-home {
+    display: block;
+    margin: 60px auto;
+    padding: 12px 30px;
+
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+    text-align: center;
+}
+
+.btn-video {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #22d3ee;
+}
+
+.gallery {
+    backdrop-filter: blur(10px);
+}
+
+.gallery {
+    max-height: 500px;
+    overflow-y: auto;
+    margin-top: 15px;
+    padding-right: 5px;
+}
+
+/* IMÁGENES */
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: none;
+    transition: 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.02);
+}
+
+/* 🔥 SCROLL MODERNO (CHROME, EDGE) */
+.gallery::-webkit-scrollbar {
+    width: 6px;
+}
+
+.gallery::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+    border-radius: 10px;
+}
+
+/* 🔥 SCROLL PARA FIREFOX */
+.gallery {
+    scrollbar-width: thin;
+    scrollbar-color: #22d3ee transparent;
+}
+
+.no-sticky {
+    position: relative !important;
+    top: auto !important;
+}
+
+/* Scroll interno para código */
+.code-container {
+    max-height: 500px;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+.code-container pre {
+    background: rgba(2, 6, 23, 0.9);
+    border-left: 4px solid #22d3ee;
+    padding: 15px;
+}
+
+.code-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.code-container::-webkit-scrollbar-thumb {
+    background: #22d3ee;
+    border-radius: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo">📖 Lección</div>
+
+    <nav id="nav-menu">
+        <a href="index.html">Inicio</a>
+        <a href="deberes.html">Deberes</a>
+    </nav>
+</header>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>📊 Calculadora de IMC</h1>
+        <p>Aplicación en Python con interfaz gráfica usando Tkinter</p>
+    </div>
+
+    <!-- CARD 1 -->
+    <div class="card">
+        <h2>📘 ¿Qué es el IMC?</h2>
+        <p>
+            El Índice de Masa Corporal (IMC) es una medida que permite evaluar si una persona tiene un peso adecuado en relación con su estatura.
+        </p>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+        <h2>🧠 Fórmula del IMC</h2>
+        <pre><code>
+IMC = peso / (estatura)^2
+        </code></pre>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+        <h2>📊 Clasificación</h2>
+        <p>
+            Bajo peso: menor a 18.5<br>
+            Normal: 18.5 – 24.9<br>
+            Sobrepeso: 25 – 29.9<br>
+            Obesidad: 30 o más
+        </p>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card">
+        <h2>💻 Implementación en Python</h2>
+        <pre><code>
+imc = peso / (estatura ** 2)
+        </code></pre>
+    </div>
+
+    <!-- CARD CAPTURAS -->
+<div class="card no-sticky">
+    <h2>📸 Interfaz de Usuario</h2>
+    <p>Vista de la aplicación desarrollada en Tkinter:</p>
+
+    <button class="btn-video" onclick="cargarImagen(this)">
+        Ver capturas
+    </button>
+<div class="gallery">
+    <!-- IMAGEN 1 -->
+    <img 
+        data-src="https://lh3.googleusercontent.com/d/1chyjNbSNGuedeDvxJvLMDcITwn84ogOF"
+        style="display:none; width:100%; border-radius:10px; margin-top:15px;">
+
+    <!-- IMAGEN 2 -->
+    <img 
+        data-src="https://lh3.googleusercontent.com/d/1UDs17h0gLRRZf9HJ91rWWhf8SscF0WjK"
+        style="display:none; width:100%; border-radius:10px; margin-top:15px;">
+
+    <!-- IMAGEN 3 -->
+    <img 
+        data-src="https://lh3.googleusercontent.com/d/18JhVceHXeHLyJ-fkqZE4NG6p5oeGBslp"
+        style="display:none; width:100%; border-radius:10px; margin-top:15px;">
+
+    <!-- IMAGEN 4 -->
+    <img 
+        data-src="https://lh3.googleusercontent.com/d/10VFb2C0pP8anoEtzFs6mhwdehNkHINzT"
+        style="display:none; width:100%; border-radius:10px; margin-top:15px;">
+
+    <!-- IMAGEN 5 -->
+    <img 
+        data-src="https://lh3.googleusercontent.com/d/1bQi7pr4Y3f7kVBRF9Nh6otQMVMO6yfCu"
+        style="display:none; width:100%; border-radius:10px; margin-top:15px;">
+
+    </div>
+</div>    
+    <!-- CARD CODIGO -->
+<div class="card no-sticky">
+    <h2>💻 Código Fuente Completo y Comentado</h2>
+ <div class="code-container">
+<pre><code>
+import tkinter as tk
+from tkinter import messagebox
+
+# =========================================================
+# FUNCIÓN: animar_barra
+# =========================================================
+def animar_barra(actual, objetivo, color):
+    """
+    Esta función se encarga de animar la barra de progreso.
+    
+    Parámetros:
+    - actual: posición actual de la barra (ancho actual)
+    - objetivo: ancho final que debe alcanzar la barra
+    - color: color que representa el estado del IMC
+    """
+
+    # Verifica si la barra aún no ha llegado al objetivo
+    if actual < objetivo:
+        actual += 2  # Incremento del ancho (controla la velocidad)
+
+        # Actualiza las coordenadas de la barra (x1, y1, x2, y2)
+        canvas_barra.coords(barra, 0, 0, actual, 20)
+
+        # Cambia el color de la barra dinámicamente
+        canvas_barra.itemconfig(barra, fill=color)
+
+        # Llama nuevamente a la función después de 10 ms (animación)
+        ventana.after(10, animar_barra, actual, objetivo, color)
+
+
+# =========================================================
+# FUNCIÓN: calcular_imc
+# =========================================================
+def calcular_imc():
+    """
+    Esta función:
+    1. Obtiene los datos ingresados por el usuario
+    2. Calcula el Índice de Masa Corporal (IMC)
+    3. Determina el estado de salud según el resultado
+    4. Muestra el resultado en pantalla
+    5. Actualiza la barra de progreso con animación
+    """
+
+    try:
+        # ==============================
+        # OBTENCIÓN DE DATOS
+        # ==============================
+
+        nombre = entry_nombre.get()  # Texto (string)
+        edad = int(entry_edad.get())  # Conversión a entero
+        peso = float(entry_peso.get())  # Conversión a decimal
+        estatura = float(entry_estatura.get())  # En metros
+
+        # ==============================
+        # VALIDACIÓN DE DATOS
+        # ==============================
+
+        # Verifica que el nombre no esté vacío
+        if nombre == "":
+            messagebox.showwarning("Error", "Completa todos los campos")
+            return  # Detiene la ejecución
+
+        # ==============================
+        # CÁLCULO DEL IMC
+        # Fórmula: peso / (estatura^2)
+        # ==============================
+
+        imc = peso / (estatura ** 2)
+
+        # ==============================
+        # CLASIFICACIÓN DEL IMC
+        # Se asigna un estado y color
+        # ==============================
+
+        if imc < 18.5:
+            estado = "Bajo peso"
+            color = "#facc15"  # Amarillo
+        elif imc < 24.9:
+            estado = "Normal"
+            color = "#22c55e"  # Verde
+        elif imc < 29.9:
+            estado = "Sobrepeso"
+            color = "#fb923c"  # Naranja
+        else:
+            estado = "Obesidad"
+            color = "#ef4444"  # Rojo
+
+        # ==============================
+        # MOSTRAR RESULTADO
+        # ==============================
+
+        resultado.set(f"{nombre}, tu IMC es {imc:.2f}\nEstado: {estado}")
+
+        # Cambia el color del texto según el resultado
+        label_resultado.config(fg=color)
+
+        # ==============================
+        # BARRA DE PROGRESO
+        # ==============================
+
+        # Se normaliza el IMC a un rango de 0 a 1
+        # Se toma 40 como valor máximo de referencia
+        porcentaje = min(imc / 40, 1)
+
+        # Convierte el porcentaje en píxeles (ancho de la barra)
+        objetivo = int(porcentaje * 300)
+
+        # Reinicia la barra a 0 antes de animar
+        canvas_barra.coords(barra, 0, 0, 0, 20)
+
+        # Llama a la función de animación
+        animar_barra(0, objetivo, color)
+
+    except ValueError:
+        # Manejo de error si el usuario ingresa texto en lugar de números
+        messagebox.showerror("Error", "Ingresa valores válidos")
+
+
+# =========================================================
+# CREACIÓN DE LA VENTANA PRINCIPAL
+# =========================================================
+
+ventana = tk.Tk()
+ventana.title("Calculadora de IMC")
+ventana.geometry("400x500")
+
+# Color de fondo de la ventana (tema oscuro)
+ventana.config(bg="#0f172a")
+
+
+# =========================================================
+# TÍTULO DE LA APLICACIÓN
+# =========================================================
+
+titulo = tk.Label(
+    ventana,
+    text="Calculadora de IMC",
+    font=("Poppins", 18, "bold"),
+    bg="#0f172a",
+    fg="#38bdf8"
+)
+titulo.pack(pady=10)
+
+
+# =========================================================
+# CONTENEDOR PRINCIPAL (FRAME)
+# =========================================================
+
+frame = tk.Frame(ventana, bg="#1e293b")
+frame.pack(padx=20, pady=20, fill="both", expand=True)
+
+
+# =========================================================
+# CAMPOS DE ENTRADA
+# =========================================================
+
+# Campo: Nombre
+tk.Label(frame, text="Nombre:", bg="#1e293b", fg="white").pack(anchor="w", padx=10)
+entry_nombre = tk.Entry(frame)
+entry_nombre.pack(padx=10, pady=5, fill="x")
+
+# Campo: Edad
+tk.Label(frame, text="Edad:", bg="#1e293b", fg="white").pack(anchor="w", padx=10)
+entry_edad = tk.Entry(frame)
+entry_edad.pack(padx=10, pady=5, fill="x")
+
+# Campo: Peso
+tk.Label(frame, text="Peso (kg):", bg="#1e293b", fg="white").pack(anchor="w", padx=10)
+entry_peso = tk.Entry(frame)
+entry_peso.pack(padx=10, pady=5, fill="x")
+
+# Campo: Estatura
+tk.Label(frame, text="Estatura (m):", bg="#1e293b", fg="white").pack(anchor="w", padx=10)
+entry_estatura = tk.Entry(frame)
+entry_estatura.pack(padx=10, pady=5, fill="x")
+
+
+# =========================================================
+# BOTÓN PARA CALCULAR EL IMC
+# =========================================================
+
+btn_calcular = tk.Button(
+    frame,
+    text="Calcular IMC",
+    command=calcular_imc,  # Llama a la función principal
+    bg="#0ea5e9",
+    fg="white",
+    font=("Poppins", 10, "bold"),
+    relief="flat"
+)
+btn_calcular.pack(pady=15)
+
+
+# =========================================================
+# ETIQUETA PARA MOSTRAR RESULTADOS
+# =========================================================
+
+resultado = tk.StringVar()  # Variable dinámica para mostrar texto
+
+label_resultado = tk.Label(
+    frame,
+    textvariable=resultado,
+    bg="#1e293b",
+    fg="#22d3ee",
+    font=("Arial", 12, "bold"),
+    justify="center"
+)
+label_resultado.pack(pady=10)
+
+
+# =========================================================
+# BARRA DE PROGRESO (CANVAS)
+# =========================================================
+
+tk.Label(frame, text="Nivel IMC:", bg="#1e293b", fg="white").pack()
+
+canvas_barra = tk.Canvas(
+    frame,
+    width=300,
+    height=20,
+    bg="#334155",
+    highlightthickness=0
+)
+canvas_barra.pack(pady=10)
+
+# Se crea un rectángulo que representa la barra (inicialmente vacío)
+barra = canvas_barra.create_rectangle(0, 0, 0, 20, fill="#22c55e")
+
+
+# =========================================================
+# EJECUCIÓN DE LA APLICACIÓN
+# =========================================================
+
+# Mantiene la ventana abierta en ejecución
+ventana.mainloop()
+</code></pre>
+</div>
+</div>
+
+    <!-- CARD VIDEO -->
+<div class="card">
+    <h2>🎬 Demostración del sistema</h2>
+
+    <button class="btn-video" onclick="cargarVideo(this)">
+        Ver video
+    </button>
+
+    <iframe 
+        data-src="https://drive.google.com/file/d/TU_ID_VIDEO/preview"
+        allow="fullscreen"
+        style="display:none; width:100%; height:300px; margin-top:15px; border-radius:10px;">
+    </iframe>
+</div>
+
+    <!-- BOTÓN -->
+    <a href="index.html" class="btn-home">⬅ Volver al inicio</a>
+
+</div>
+
+<!-- SCRIPT SCROLL -->
+<script>
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+
+        if (rect.top < 100) {
+            card.classList.add('scale');
+        } else {
+            card.classList.remove('scale');
+        }
+    });
+});
+</script>
+
+<script>
+function cargarVideo(btn) {
+
+    document.querySelectorAll('iframe').forEach(v => {
+        v.src = "";
+        v.style.display = "none";
+    });
+
+    document.querySelectorAll('.btn-video').forEach(b => {
+        b.style.display = "inline-block";
+    });
+
+    const iframe = btn.nextElementSibling;
+
+    iframe.src = iframe.getAttribute("data-src");
+    iframe.style.display = "block";
+    btn.style.display = "none";
+}
+
+function cargarImagen(btn) {
+
+    // Selecciona TODAS las imágenes dentro de la card
+    const imgs = btn.parentElement.querySelectorAll("img");
+
+    imgs.forEach(img => {
+        img.src = img.getAttribute("data-src");
+        img.style.display = "block";
+    });
+
+    btn.style.display = "none";
+}
+
+</script>
+<script>
+function cargarImagen(btn) {
+
+    const gallery = btn.nextElementSibling;
+    const imgs = gallery.querySelectorAll("img");
+
+    imgs.forEach(img => {
+        img.src = img.getAttribute("data-src");
+        img.style.display = "block";
+    });
+
+    btn.style.display = "none";
+}
+</script>
+
+</body>
+</html>

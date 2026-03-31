@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apolo Carlos</title>
+<title>Deberes - Apolo</title>
 
 <!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -80,18 +80,18 @@ body {
 }
 
 /* CONTENIDO */
-.hero {
+.header {
     text-align: center;
-    padding: 40px 20px;
+    margin-bottom: 20px;
 }
 
-.hero h1 {
+.header h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 36px;
+    font-size: 32px;
     margin-bottom: 10px;
 }
 
-.hero p {
+.header p {
     color: #cbd5f5;
 }
 
@@ -141,17 +141,23 @@ body {
 /* TEXT */
 .card p {
     color: #cbd5f5;
+    margin-bottom: 15px;
 }
 
-/* BUTTON */
-.btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
+/* BUTTONS */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
 
+/* BOTONES */
+.btn {
+    flex: 1;
+    padding: 10px;
     border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
+    text-align: center;
 
     background: linear-gradient(135deg, #0ea5e9, #22d3ee);
     color: white;
@@ -165,13 +171,6 @@ body {
     box-shadow: 0 0 20px rgba(34,211,238,0.8);
 }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    color: #94a3b8;
-}
-
 </style>
 </head>
 
@@ -179,53 +178,54 @@ footer {
 
 <!-- NAVBAR -->
 <header class="navbar">
-    <div class="logo">💻 Apolo Carlos 💻</div>
+    <div class="logo">📚 Apolo</div>
 
     <nav id="nav-menu">
-        <a href="index.html" class="active">Inicio</a>
-        <a href="deberes.html">Deberes</a>
+        <a href="index.html">Inicio</a>
+        <a href="deberes.html" class="active">Deberes</a>
         <a href="db1.html">Deber 1</a>
         <a href="db2.html">Deber 2</a>
         <a href="db3.html">Deber 3</a>
     </nav>
 </header>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>💻 Desarrollo y Programación de Software 💻</h1>
-    <p>Bienvenido a mi página web</p>
-    <p><strong>Desarrollado por Apolo Carlos</strong></p>
+<!-- HEADER -->
+<div class="header">
+    <h1>📚 Mis Deberes</h1>
+    <p>Selecciona un deber para ver su contenido</p>
 </div>
 
 <!-- CARDS -->
 <div class="container">
 
     <div class="card">
-        <div class="icon">📚</div>
-        <h2>Mis Deberes</h2>
-        <p>Accede a todas tus tareas y trabajos realizados.</p>
-        <a href="deberes.html" class="btn">Entrar</a>
+        <div class="icon">📘</div>
+        <h2>Deber 1</h2>
+        <p>Sentencias condicionales (if)</p>
+        <div class="buttons">
+            <a href="db1.html" class="btn">Ver</a>
+        </div>
     </div>
 
     <div class="card">
-        <div class="icon">📖</div>
-        <h2>Lección</h2>
-        <p>Contenido teórico y material de estudio.</p>
-        <a href="Leccion.html" class="btn">Entrar</a>
+        <div class="icon">💻</div>
+        <h2>Deber 2</h2>
+        <p>Estructuras repetitivas (bucles)</p>
+        <div class="buttons">
+            <a href="db2.html" class="btn">Ver</a>
+        </div>
     </div>
 
     <div class="card">
-        <div class="icon">📝</div>
-        <h2>Examen</h2>
-        <p>Evaluaciones y pruebas del curso.</p>
-        <a href="Examen.html" class="btn">Entrar</a>
+        <div class="icon">⚙️</div>
+        <h2>Deber 3</h2>
+        <p>Funciones en Python</p>
+        <div class="buttons">
+            <a href="db3.html" class="btn">Ver</a>
+        </div>
     </div>
 
 </div>
-
-<footer>
-© 2026 Apolo Carlos - Todos los derechos reservados
-</footer>
 
 </body>
 </html>

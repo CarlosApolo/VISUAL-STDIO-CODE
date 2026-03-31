@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>Deber 2 - Bucles</title>
+
+<style>
+
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* BODY */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #e2e8f0;
+
+    background: radial-gradient(circle at top left, #0f172a, #020617 60%),
+                radial-gradient(circle at bottom right, #0ea5e9, #020617 60%);
+    
+    background-attachment: fixed;
+    padding-top: 90px;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 30px;
+
+    background: rgba(2, 6, 23, 0.7);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(14,165,233,0.3);
+
+    z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+/* LINKS */
+#nav-menu {
+    display: flex;
+    gap: 25px;
+}
+
+#nav-menu a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+
+    color: #cbd5f5;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* HOVER */
+#nav-menu a:hover {
+    color: #22d3ee;
+    text-shadow: 0 0 8px rgba(34,211,238,0.7);
+}
+
+/* ACTIVO */
+#nav-menu a.active {
+    color: #38bdf8;
+    border-bottom: 2px solid #38bdf8;
+    padding-bottom: 2px;
+}
+
+/* MOBILE */
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #nav-menu {
+        position: absolute;
+        top: 65px;
+        right: 0;
+        width: 220px;
+        background: #020617;
+        flex-direction: column;
+        padding: 20px;
+        display: none;
+    }
+
+    #nav-menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* CONTENEDOR */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* TÍTULO PRINCIPAL */
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* DEFINICIÓN (MEJORADA) */
+.definicion {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+
+    color: #cbd5f5;
+
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+/* CARDS */
+.ejercicio {
+    position: sticky;
+    top: 120px;
+
+    margin: 60px 0;
+    padding: 25px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+
+    transition: 0.4s;
+}
+
+/* EFECTO SCROLL */
+.ejercicio.scale {
+    transform: scale(0.92);
+    opacity: 0.6;
+    filter: blur(2px);
+}
+
+/* HOVER */
+.ejercicio:hover {
+    transform: scale(1.02);
+}
+
+/* SUBTÍTULOS */
+.ejercicio h2 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+}
+
+/* CÓDIGO */
+pre {
+    background: rgba(2, 6, 23, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+
+    border-left: 4px solid #22d3ee;
+}
+
+code {
+    color: #22d3ee;
+}
+
+/* BOTÓN */
+.btn-home {
+    display: block;
+    margin: 60px auto;
+    padding: 12px 30px;
+
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+
+    box-shadow: 0 10px 25px rgba(14,165,233,0.5);
+
+    transition: 0.3s;
+}
+
+.btn-home:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(34,211,238,0.8);
+}
+
+.btn-video {
+    margin-top: 15px;
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+    color: white;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.btn-video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(34,211,238,0.7);
+}
+
+iframe {
+    width: 100%;
+    height: 250px;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: none;
+}
+
+.ejercicio:hover,
+.ejercicio:focus-within {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    
+    <div class="logo">💻 Desarrollo y Programación de Software 💻</div>
+
+    <nav id="nav-menu">
+        <a href="index.html">Inicio</a>
+        <a href="deberes.html">Deberes</a>
+        <a href="db1.html">Deber 1</a>
+        <a href="db3.html">Deber 3</a>
+    </nav>
+
+    <!-- BOTÓN HAMBURGUESA -->
+    <div class="menu-toggle" id="menu-toggle">
+        ☰
+    </div>
+
+</header>
+
+<div class="container">
+
+<h1>DEBER 2 - BUCLES</h1>
+
+<p class="definicion">
+Los bucles en Python permiten repetir un bloque de código varias veces, ya sea mediante estructuras <b>for</b> o <b>while</b>.
+</p>
+<p>Aplica estructuras de repetición (for / while) para resolver los siguientes problemas. Comenta el código de cada solución.</p>
+
+<!-- EJERCICIO 1 -->
+<div class="ejercicio">
+<h2>1. Imprime los números del 1 al 10.</h2>
+<pre><code>
+for i in range(1, 11):
+    print(i)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 2 -->
+<div class="ejercicio">
+<h2>2. Imprime los números pares del 1 al 20.</h2>
+<pre><code>
+for i in range(1, 21):
+    if i % 2 == 0:
+        print(i)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 3 -->
+<div class="ejercicio">
+<h2>3. Tabla de multiplicar.</h2>
+<pre><code>
+numero = int(input("Ingrese un número: "))
+
+for i in range(1, 11):
+    print(numero, "x", i, "=", numero * i)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 4 -->
+<div class="ejercicio">
+<h2>4. Números del 10 al 1.</h2>
+<pre><code>
+for i in range(10, 0, -1):
+    print(i)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 5 -->
+<div class="ejercicio">
+<h2>5. Suma acumulada.</h2>
+<pre><code>
+numero = int(input("Ingrese un número: "))
+suma = 0
+
+for i in range(1, numero + 1):
+    suma += i
+
+print("La suma es:", suma)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 6 -->
+<div class="ejercicio">
+<h2>6. Contar vocales.</h2>
+<pre><code>
+palabra = input("Ingrese una palabra: ").lower()
+contador = 0
+
+for letra in palabra:
+    if letra in "aeiou":
+        contador += 1
+
+print("Número de vocales:", contador)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 7 -->
+<div class="ejercicio">
+<h2>7. Validar contraseña.</h2>
+<pre><code>
+    <!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+correcta = "python123"
+
+while True:
+    clave = input("Ingrese la contraseña: ")
+
+    if clave == correcta:
+        print("Acceso correcto")
+        break
+    else:
+        print("Contraseña incorrecta")
+</code></pre>
+</div>
+
+<!-- EJERCICIO 8 -->
+<div class="ejercicio">
+<h2>8. Múltiplos de 5 del 1 al 50.</h2>
+<pre><code>
+for i in range(1, 51):
+    if i % 5 == 0:
+        print(i)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 9 -->
+<div class="ejercicio">
+<h2>9. Número mayor.</h2>
+<pre><code>
+mayor = None
+
+for i in range(5):
+    num = int(input("Ingrese un número: "))
+
+    if mayor is None or num > mayor:
+        mayor = num
+
+print("El número mayor es:", mayor)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 10 -->
+<div class="ejercicio">
+<h2>10. Triángulo de asteriscos.</h2>
+<pre><code>
+for i in range(1, 6):
+    print("*" * i)
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+</div>
+
+<!-- BOTÓN -->
+<a href="index.html" class="btn-home">⬅ Volver al Inicio</a>
+
+<script>
+
+// 🔥 RESALTAR LINK ACTIVO
+const links = document.querySelectorAll("#nav-menu a");
+const currentPage = window.location.pathname.split("/").pop();
+
+links.forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+    }
+});
+
+
+// 📱 MENÚ HAMBURGUESA
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("nav-menu");
+
+if (toggle) {
+    toggle.addEventListener("click", () => {
+        menu.classList.toggle("active");
+    });
+}
+
+
+// 🎯 EFECTOS DE SCROLL (UNIFICADO)
+const cards = document.querySelectorAll('.ejercicio');
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+
+    // 👉 EFECTO NAVBAR
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+
+    // 👉 EFECTO CARDS (APPLE)
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+
+        if (rect.top < 100) {
+            card.classList.add('scale');
+        } else {
+            card.classList.remove('scale');
+        }
+    });
+
+});
+
+</script>
+
+</body>
+</html>

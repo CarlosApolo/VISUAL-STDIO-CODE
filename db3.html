@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>Deber 3 - Funciones</title>
+
+<style>
+
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* BODY */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #e2e8f0;
+
+    background: radial-gradient(circle at top left, #0f172a, #020617 60%),
+                radial-gradient(circle at bottom right, #0ea5e9, #020617 60%);
+    
+    background-attachment: fixed;
+    padding-top: 90px;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 30px;
+
+    background: rgba(2, 6, 23, 0.7);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(14,165,233,0.3);
+
+    z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+/* LINKS */
+#nav-menu {
+    display: flex;
+    gap: 25px;
+}
+
+#nav-menu a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+
+    color: #cbd5f5;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* HOVER */
+#nav-menu a:hover {
+    color: #22d3ee;
+    text-shadow: 0 0 8px rgba(34,211,238,0.7);
+}
+
+/* ACTIVO */
+#nav-menu a.active {
+    color: #38bdf8;
+    border-bottom: 2px solid #38bdf8;
+    padding-bottom: 2px;
+}
+
+/* MOBILE */
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #nav-menu {
+        position: absolute;
+        top: 65px;
+        right: 0;
+        width: 220px;
+        background: #020617;
+        flex-direction: column;
+        padding: 20px;
+        display: none;
+    }
+
+    #nav-menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* CONTENEDOR */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* TÍTULO PRINCIPAL */
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* DEFINICIÓN (MEJORADA) */
+.definicion {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+
+    color: #cbd5f5;
+
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+/* CARDS */
+.ejercicio {
+    position: sticky;
+    top: 120px;
+
+    margin: 60px 0;
+    padding: 25px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+
+    transition: 0.4s;
+}
+
+/* EFECTO SCROLL */
+.ejercicio.scale {
+    transform: scale(0.92);
+    opacity: 0.6;
+    filter: blur(2px);
+}
+
+/* HOVER */
+.ejercicio:hover {
+    transform: scale(1.02);
+}
+
+/* SUBTÍTULOS */
+.ejercicio h2 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+}
+
+/* CÓDIGO */
+pre {
+    background: rgba(2, 6, 23, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+
+    border-left: 4px solid #22d3ee;
+}
+
+code {
+    color: #22d3ee;
+}
+
+/* BOTÓN */
+.btn-home {
+    display: block;
+    margin: 60px auto;
+    padding: 12px 30px;
+
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+
+    box-shadow: 0 10px 25px rgba(14,165,233,0.5);
+
+    transition: 0.3s;
+}
+
+.btn-home:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(34,211,238,0.8);
+}
+
+.btn-video {
+    margin-top: 15px;
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+    color: white;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.btn-video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(34,211,238,0.7);
+}
+
+iframe {
+    width: 100%;
+    height: 250px;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: none;
+}
+
+.ejercicio:hover,
+.ejercicio:focus-within {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    
+    <div class="logo">💻 Desarrollo y Programación de Software 💻</div>
+
+    <nav id="nav-menu">
+        <a href="index.html">Inicio</a>
+        <a href="deberes.html">Deberes</a>
+        <a href="db1.html">Deber 1</a>
+        <a href="db2.html">Deber 2</a>
+    </nav>
+
+    <!-- BOTÓN HAMBURGUESA -->
+    <div class="menu-toggle" id="menu-toggle">
+        ☰
+    </div>
+
+</header>
+
+<div class="container">
+
+<h1>DEBER 3 - FUNCIONES</h1>
+
+<p class="definicion">
+Las funciones en Python son bloques de código reutilizables que realizan una tarea específica. Permiten organizar mejor el programa y evitar repetir código.
+</p>
+<p>Crea funciones en Python que resuelvan cada uno de los siguientes problemas. Recuerda comentar cada función indicando su propósito, parámetros y valor de retorno.</p>
+
+<!-- EJERCICIO 1 -->
+<div class="ejercicio">
+<h2>1. Mensaje de bienvenida.</h2>
+<pre><code>
+def bienvenida(nombre):
+    print("Bienvenido,", nombre)
+
+bienvenida("Carlos")
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 2 -->
+<div class="ejercicio">
+<h2>2. Número par o impar.</h2>
+<pre><code>
+def es_par(numero):
+    if numero % 2 == 0:
+        return "Par"
+    else:
+        return "Impar"
+
+print(es_par(5))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 3 -->
+<div class="ejercicio">
+<h2>3. Suma de dos números.</h2>
+<pre><code>
+def suma(a, b):
+    return a + b
+
+print(suma(3, 4))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 4 -->
+<div class="ejercicio">
+<h2>4. Longitud de palabra.</h2>
+<pre><code>
+def longitud(palabra):
+    return len(palabra)
+
+print(longitud("Python"))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 5 -->
+<div class="ejercicio">
+<h2>5. Cuadrado de un número.</h2>
+<pre><code>
+def cuadrado(numero):
+    return numero ** 2
+
+print(cuadrado(4))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 6 -->
+<div class="ejercicio">
+<h2>6. Mayor de tres números.</h2>
+<pre><code>
+def mayor(a, b, c):
+    if a >= b and a >= c:
+        return a
+    elif b >= a and b >= c:
+        return b
+    else:
+        return c
+
+print(mayor(5, 9, 3))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 7 -->
+<div class="ejercicio">
+<h2>7. Celsius a Fahrenheit.</h2>
+<pre><code>
+def celsius_a_fahrenheit(c):
+    return (c * 9/5) + 32
+
+print(celsius_a_fahrenheit(25))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 8 -->
+<div class="ejercicio">
+<h2>8. Suma de lista.</h2>
+<pre><code>
+def suma_lista(lista):
+    total = 0
+    for num in lista:
+        total += num
+    return total
+
+print(suma_lista([1, 2, 3, 4]))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 9 -->
+<div class="ejercicio">
+<h2>9. Número positivo.</h2>
+<pre><code>
+def es_positivo(numero):
+    if numero > 0:
+        return True
+    else:
+        return False
+
+print(es_positivo(10))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+<!-- EJERCICIO 10 -->
+<div class="ejercicio">
+<h2>10. Invertir palabra.</h2>
+<pre><code>
+def invertir(palabra):
+    return palabra[::-1]
+
+print(invertir("python"))
+</code></pre>
+<!-- BOTÓN -->
+<button class="btn-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+🎬 Ver video
+</button>
+
+<!-- VIDEO (OCULTO) -->
+<iframe
+    src="https://drive.google.com/file/d/17oc7tn-yN3XpxndCvlXYUcJzaLO_IFxn/preview"
+    loading="lazy"
+    allow="autoplay"
+    allowfullscreen
+    style="display:none;">
+</iframe>
+</div>
+
+</div>
+
+<!-- BOTÓN -->
+<a href="index.html" class="btn-home">⬅ Volver al Inicio</a>
+
+<script>
+
+// 🔥 RESALTAR LINK ACTIVO
+const links = document.querySelectorAll("#nav-menu a");
+const currentPage = window.location.pathname.split("/").pop();
+
+links.forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+    }
+});
+
+
+// 📱 MENÚ HAMBURGUESA
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("nav-menu");
+
+if (toggle) {
+    toggle.addEventListener("click", () => {
+        menu.classList.toggle("active");
+    });
+}
+
+
+// 🎯 EFECTOS DE SCROLL (UNIFICADO)
+const cards = document.querySelectorAll('.ejercicio');
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+
+    // 👉 EFECTO NAVBAR
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+
+    // 👉 EFECTO CARDS (APPLE)
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+
+        if (rect.top < 100) {
+            card.classList.add('scale');
+        } else {
+            card.classList.remove('scale');
+        }
+    });
+
+});
+
+</script>
+
+</body>
+</html>

@@ -98,11 +98,30 @@ body {
 /* GRID */
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* 🔥 4 columnas */
     gap: 25px;
-    padding: 20px;
-    max-width: 1000px;
-    margin: auto;
+    padding: 40px;
+    height: calc(100vh - 150px); /* ocupa pantalla */
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+        height: auto;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* CARDS GLASS */
@@ -172,6 +191,34 @@ footer {
     color: #94a3b8;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+
+    /* 🔥 CLAVE */
+    align-items: stretch;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+
+    /* 🔥 CLAVE */
+    align-items: stretch;
+}
+
+.card p {
+    min-height: 60px; /* ajusta según tu diseño */
+}
+
+.btn {
+    margin-top: auto;
+}
+
+
+
 </style>
 </head>
 
@@ -203,21 +250,28 @@ footer {
     <div class="card">
         <div class="icon">📚</div>
         <h2>Mis Deberes</h2>
-        <p>Accede a todas tus tareas y trabajos realizados.</p>
+        <p>Accede a las tareas y trabajos realizados</p>
         <a href="deberes.html" class="btn">Entrar</a>
     </div>
 
     <div class="card">
         <div class="icon">📖</div>
+        <h2>Aplicaciones Tkinter</h2>
+        <p>Aplicaciones desarrolladas con Tkinter en clase</p>
+        <a href="tkinter.html" class="btn">Entrar</a>
+    </div>
+
+    <div class="card">
+        <div class="icon">📖</div>
         <h2>Lección</h2>
-        <p>Contenido teórico y material de estudio.</p>
+        <p>APP para calcular IMC</p>
         <a href="Leccion.html" class="btn">Entrar</a>
     </div>
 
     <div class="card">
         <div class="icon">📝</div>
         <h2>Examen</h2>
-        <p>Evaluaciones y pruebas del curso.</p>
+        <p>Evaluación Final</p>
         <a href="Examen.html" class="btn">Entrar</a>
     </div>
 
